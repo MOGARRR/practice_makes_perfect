@@ -60,3 +60,12 @@ const kidsWithCandies = function(candies, extraCandies) {
    return result;
     
 };
+
+/*  In future, i couldve just compared with candiesSorted[0] instead of creating a new variable 
+
+  Ex. candy + extraCandies >= candiesSorted[0] 
+  
+  or maybe i couldve used a filter with the largest number? but then i would put the work into the final array being in order i think. 
+  outside the redundant mostCandiesBase variable, im pretty happy with this answer
+  
+  */
