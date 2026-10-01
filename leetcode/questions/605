@@ -31,30 +31,54 @@ There are no two adjacent flowers in flowerbed.
 
 const canPlaceFlowers = function(flowerbed, n) {
 
+   // Using a for loop instead of array for of loop
+   // This makes tracking the elements before and after i easier 
     for (let i = 0; i <= flowerbed.length; i++){
+
+      // Main if statement
+      // comparison checks if the element before/after are valid, and if i is valid too
+      if (flowerbed[i - 1] === 0 && flowerbed[i + 1] === 0 && flowerbed[i] !== 1){
+          
+          //If valid, it will update element to 1 for future comparisons
+          flowerbed[i]++;
         
-        if (flowerbed[i - 1] === 0 && flowerbed[i + 1] === 0 && flowerbed[i] !== 1){
-            flowerbed[i]++;
+          // Updates n to track remaining "Plants" for final result
             n--;
         }
 
+        // First edge case if statement
+        // Checks if element is first in the list and is valid
+        
+        // This statement is needed since  the element before is undefined
+        // and is considered false in main comparison statement
         if(i === 0 && flowerbed[1] === 0 && flowerbed[i] !== 1){
             flowerbed[i]++;
             n--;
         }
 
+        // Second edge case if statement
+        // same as previous edge case but for the last element in the array 
         if(i === flowerbed.length - 1 && flowerbed[i -1] === 0 && flowerbed[i] !== 1){
             flowerbed[i]++;
             n--;
         }
 
+        // Third edge case if statement
+        // Checks if array only has one element and if its valid
+        
+        // This statement is needed since an array of 1 has no before or after
+        // element so it would falsy in main comparison 
         if (flowerbed.length === 1 && flowerbed[0] !== 1 ){
             flowerbed[i]++;
             n--;
         }
-    
     }
 
+    // Final result if statement
+    // Checks if all the "plants" in n have been planted
+
+    // if theres no plants remaining it will return true
+    // and if theres any remaining it will return false
     if(n <= 0 ) {
         return true;
     } else {
