@@ -26,27 +26,48 @@ Output: "leotcede"
 
 // My Answer 
 
-const reverseVowels = function(s) {
-    const vowels = ['a','e','i','o','u'];
-    const takenVowels = [];
+const reverseVowels = function (s) {
 
-    const splitString = s.split('');
+  // Create vowel array for later comparisons
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
 
-    for(let i = 0; i < splitString.length; i++){
-       if(vowels.includes(splitString[i].toLowerCase())){
-        takenVowels.push(splitString[i]);
-        splitString[i] = 0;
-       }
-    }
+  // Empty array to store vowels taken from string 
+  const takenVowels = [];
+
+  // Splits string into array with each letter as an element
+  // so i can loop through each letter
+  const splitString = s.split('');
+
+  for (let i = 0; i < splitString.length; i++) {
     
-    takenVowels.reverse()
-
-    for(let i = 0; i < splitString.length; i++) {
-        if(splitString[i] === 0) {
-            splitString[i] = takenVowels[0];
-            takenVowels.shift();
-        }
+    // checks if element is in vowel array
+    // converts element into lowercase to remove case sensitivity  
+    if (vowels.includes(splitString[i].toLowerCase())) {
+      
+      // Store vowels into earlier array
+      takenVowels.push(splitString[i]);
+      
+      // Change vowels to 0 placeholders to mark index for replacements
+      splitString[i] = 0;
     }
+  }
 
-    return splitString.join('');
+  // Reverse elements in array
+  takenVowels.reverse()
+
+  for (let i = 0; i < splitString.length; i++) {
+    
+    // Checks if element is 0 placeholder
+    if (splitString[i] === 0) {
+      
+      // Replaces placeholder with first element in reverse array
+      splitString[i] = takenVowels[0];
+      
+      // Removes first element to prevent repeats
+      takenVowels.shift();
+    }
+  }
+  
+  // returns string concatenated from elements in splitString array 
+  return splitString.join('');
 };
